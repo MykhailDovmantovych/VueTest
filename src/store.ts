@@ -5,10 +5,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    links:[
+    ]
 
   },
+  getters:{
+    countLinks: state => {
+      return state.links.length
+    }
+  },
   mutations: {
-
+    ADD_LINK: (state,link) =>
+    {
+      state.links.push(link)
+    }
   },
   actions: {
 
