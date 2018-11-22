@@ -5,11 +5,9 @@
   <div>  
 
     <VideoSrcInput/>
-     <div>{{countLinks}}</div>
     <div v-for="(link,index) in links" v-bind:key="index">
       <video-dropdown v-bind:video-source="link"/>
     </div>
-   
    </div>
   </div>
 </template>
