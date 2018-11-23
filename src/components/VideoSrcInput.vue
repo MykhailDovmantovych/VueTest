@@ -25,9 +25,10 @@ export default {
     },
     methods:{
         processForm: function(){
+               if(this.videoSource != ""){
                 store.commit("ADD_LINK",this.videoSource)
-                this.$emit('leftt',this.videoSource)
                 this.videoSource = "";
+               }
         }
         // ...mapMutations([
         // 'ADD_LINK'
