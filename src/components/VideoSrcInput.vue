@@ -48,7 +48,7 @@ export default {
     grid-template-columns: 5fr 1fr;
 }
 .nav-input{
-    margin: 5% auto 0 auto;
+    margin: 0 auto 0 auto;
   width: 40%;
   max-width: 625px;
 }
