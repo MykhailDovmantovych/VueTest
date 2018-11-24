@@ -2,6 +2,7 @@
 <template>
   <div class="">
       <div class="iframe-description" >Click here to start dragging</div>
+      <div class="close" @click="closeframe"></div>
     <div class="iframe-container">
         <iframe  v-bind:src="'https://www.youtube.com/embed/'+ videoSource" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -14,14 +15,18 @@ import { mapState } from 'vuex'
 export default Vue.extend({
     name: 'VideoDropdown',
     props:{
-       videoSource:String
+       videoSource:String,
+       ind:Number
     },
     methods:{
+        closeframe(){
+         this.$emit("close-video-container",this.ind)
+        }
     }
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .iframe-container {
   overflow: hidden;
   padding-top: 56.25%;
@@ -31,8 +36,9 @@ export default Vue.extend({
 .iframe-container iframe {
     border-color: rgb(241, 229, 224);
    border-top-width: 20px;
-   border-top-style:double;
-   border-top-left-radius: 20%;
+   border-top-style:dashed;
+   border-top-left-radius: 35%;
+   border-top-right-radius: 40%;
    height: 90%;
    left: 0;
    position: absolute;
@@ -43,7 +49,7 @@ export default Vue.extend({
  position:absolute;
  margin:0 auto;
  width: 95%;
- z-index: 99;
+ z-index: 30;
  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
  font-size: 20px;
  cursor: pointer;
@@ -52,4 +58,31 @@ export default Vue.extend({
 .iframe-container-4x3 {
   padding-top: 75%;
 }
+.close {
+  position: absolute;
+  float:right;
+  width: 20px;
+  right: 15px;
+  height: 20px;
+  opacity: 0.4;
+  z-index: 99;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  content: ' ';
+  height: 20px;
+  width: 2px;
+  background-color:black;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+
 </style>

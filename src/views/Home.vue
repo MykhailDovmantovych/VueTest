@@ -1,13 +1,12 @@
 <!-- eslint-disable -->
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
   <div>  
 
     <VideoSrcInput/>
-    <div v-for="(link,index) in links" v-bind:key="index">
-      <vue-drag-resize :isActive="true" :w="800" :h="430" :x="100" :y="100" v-on:dragged="alert(this)" v-on:resizing="resize" v-on:dragging="resize" :sticks="['tl','tr','bl','br']" :aspectRatio="true">
-      <video-dropdown v-bind:video-source="link"/>
+    <div v-for="(link,index) in links" v-bind:key="link">
+      <vue-drag-resize :isActive="true" :w="800" :h="430" :x="500" :y="195" v-on:resizing="resize" v-on:dragging="resize" :sticks="['tl','tr','bl','br']" :aspectRatio="true">
+      <video-dropdown v-bind:video-source="link" v-bind:ind="index" v-on:close-video-container="removeElement"/>
       </vue-drag-resize>
     </div>
    </div>
@@ -21,6 +20,7 @@ import VideoDropdown from '@/components/VideoDropdown.vue'// @ is an alias to /s
 import VueDragResize from 'vue-drag-resize'
 import { mapState } from 'vuex';
 import { mapGetters } from 'vuex';
+import store from '@/store';
 
 export default Vue.extend({
   name: 'home',
@@ -51,6 +51,9 @@ export default Vue.extend({
         this.height = newRect.height;
         this.top = newRect.top;
         this.left = newRect.left;
+    },
+    removeElement(index){
+        store.commit("REMOVE_LINK",index)
     }
         }
 })
